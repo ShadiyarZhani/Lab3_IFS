@@ -1,0 +1,21 @@
+string message, key;
+
+  cin >> message >> key;
+
+  cout << "Encrypted message: ";
+
+  for (int i = 0; i < message.size(); i++) 
+  {
+    bitset<8> messageByte = bitset<8>(message[i]), keyByte = bitset<8>(key[i]);
+    unsigned long encryptedByte = (messageByte ^ keyByte).to_ulong();
+    cout << encryptedByte << " ";
+  }
+
+  cout << "\nDecrypted message: ";
+
+  for (int i = 0; i < message.size(); i++) 
+  {
+    bitset<8> messageByte = bitset<8>(message[i]), keyByte = bitset<8>(key[i]);
+    unsigned long decryptedByte = (messageByte ^ keyByte ^ keyByte).to_ulong();
+    cout << (char)(decryptedByte);
+  }
